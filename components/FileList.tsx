@@ -1,4 +1,4 @@
-// components/FileList.tsx
+
 "use client";
 
 import { useEffect, useState } from "react";
@@ -35,11 +35,9 @@ export default function FileList() {
   useEffect(() => {
     fetchFiles();
 
-    // Set up event listener to refresh files when a new file is uploaded
     const handleFileUploaded = () => fetchFiles();
     window.addEventListener("fileUploaded", handleFileUploaded);
 
-    // Clean up the event listener when component unmounts
     return () => {
       window.removeEventListener("fileUploaded", handleFileUploaded);
     };
@@ -73,7 +71,7 @@ export default function FileList() {
 
     try {
       await axios.delete(`/api/files/${fileId}`);
-      // Refresh the file list
+  
       fetchFiles();
     } catch (err) {
       console.error("Error deleting file:", err);

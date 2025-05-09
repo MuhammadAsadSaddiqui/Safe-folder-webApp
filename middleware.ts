@@ -8,7 +8,7 @@ const privateRoutes = [
   "/unverified",
 ];
 
-const authRoutes = ["/login", "/register", "/forgotpass", "/signup"];
+const authRoutes = ["/login", "/register", "/forgot-password", "/signup"];
 
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;

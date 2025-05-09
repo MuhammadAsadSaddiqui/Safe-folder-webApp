@@ -75,6 +75,16 @@ export default function Home() {
                 )}
               />
 
+              {/* Added Forgot Password link */}
+              {/*<div className="flex justify-end">*/}
+              {/*  <Link*/}
+              {/*    href="/forgot-password"*/}
+              {/*    className="text-sm text-blue-600 hover:text-blue-800"*/}
+              {/*  >*/}
+              {/*    Forgot password?*/}
+              {/*  </Link>*/}
+              {/*</div>*/}
+
               <Button
                 type="submit"
                 className="w-full h-12 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg"

@@ -4,10 +4,10 @@ import { db } from "@/lib/db";
 import { hash } from "bcrypt";
 
 export async function register({
-                                 fullName,
-                                 email,
-                                 password,
-                               }: RegisterInterface) {
+  fullName,
+  email,
+  password,
+}: RegisterInterface) {
   const existingUser = await db.user.findUnique({
     where: {
       email: email,
@@ -25,7 +25,7 @@ export async function register({
       fullName: fullName as string | null,
       email,
       password: hashPassword,
-      emailVerified: true,
+      // emailVerified: true,
     },
   });
 

@@ -4,8 +4,9 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { register } from "@/app/(public)/signup/action/register";
-import { verifyCode, resendCode } from "@/app/(public)/signup/action/verify"; // Add this import
+import { verifyCode, resendCode } from "@/app/(public)/signup/action/verify";
 import { useNotification } from "@/lib/context/NotificationContext";
+import { useRouter } from "next/navigation"; // FIXED: Correct import
 
 // Define the verification step type
 type VerificationStep = "signup" | "verification" | "success";
@@ -20,6 +21,7 @@ const verificationCodeSchema = z.object({
 });
 
 const UseSignup = () => {
+  const router = useRouter(); // ADDED: Initialize router
   const { showSuccess, showError } = useNotification();
   const [verificationStep, setVerificationStep] =
     useState<VerificationStep>("signup");
@@ -75,9 +77,12 @@ const UseSignup = () => {
       if (response.status !== 200) {
         showError(response.message);
       } else {
-        setUserEmail(values.email);
-        setVerificationStep("verification");
-        showSuccess("Verification code sent to your email.");
+        showSuccess("Registration successful!");
+        router.push("/home"); // Now uses the correctly initialized router
+
+        // setUserEmail(values.email);
+        // setVerificationStep("verification");
+        // showSuccess("Verification code sent to your email.");
       }
     } catch (error) {
       showError("An error occurred during signup.");
